@@ -6,6 +6,7 @@ This project demonstrates how to integrate the [PayHere](https://www.payhere.lk)
 
 ## 📁 Project Structure
 payhere-app/ # Frontend - Vite + React
+
 payhere-backend/ # Backend - Express + Node.js
 
 
