@@ -1,26 +1,33 @@
-# 💳 React + PayHere Integration
+# 💳 React + PayHere Integration using Vite + React
 
-This project demonstrates how to integrate the [PayHere](https://www.payhere.lk) payment gateway with a React app using **Vite** and **crypto-js** for generating secure hashes.
+This guide will help you integrate the **PayHere** payment gateway with a React frontend built using **Vite**. You'll use `crypto-js` to generate a secure hash required by PayHere.
 
 ---
 
 ## 🚀 Getting Started
 
-c
+### Step 1: Create the React App
+
+Open your terminal and run:
 
 ```bash
 npm create vite@latest
 # Choose a name (e.g., payhere-app)
-# Choose: → React → JavaScript
+# Framework: React
+# Variant: JavaScript
 
+Then move into your project folder:
 cd payhere-app
+
+
+Install the necessary dependencies:
 npm install
 npm install crypto-js
 
 
-### 1. Create new file in src/PayHereCheckout.jsx
-
-write this code in file
+🧩 Add PayHere Payment Component
+Step 2: Create a new file src/PayHereCheckout.jsx
+Add the following code:
 
 import React, { useEffect } from 'react';
 import md5 from 'crypto-js/md5';
@@ -105,4 +112,31 @@ const PayHereCheckout = () => {
 export default PayHereCheckout;
 
 
----
+🧑‍💻 Update the Main App File
+Step 3: Modify src/App.jsx to use the checkout component
+Replace your existing App.jsx code with:
+
+import './App.css'
+import PayHereCheckout from './PayHereCheckout.jsx';
+
+function App() {
+
+  return (
+    <>
+      <div>
+        <a href="https://www.payhere.lk" target="_blank">
+          <img  src="https://www.payhere.lk/downloads/images/payhere_square_banner_dark.png" className="logo" alt="Vite logo"  style={{ width: '250px' }} />
+        </a>
+
+        <div className="App">
+            <h1>React + PayHere Integration</h1>
+            <PayHereCheckout />
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default App
+
+
