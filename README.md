@@ -9,4 +9,18 @@ payhere-app/ # Frontend - Vite + React
 
 payhere-backend/ # Backend - Express + Node.js
 
+💳 PayHere Integration (Frontend)
+
+```bash
+npm create vite@latest
+# Choose a project name (e.g., payhere-app)
+# Choose React and JavaScript
+
+cd payhere-app
+npm install
+npm install crypto-js
+npm run dev
+
+
+
 
