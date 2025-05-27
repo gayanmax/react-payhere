@@ -18,5 +18,11 @@ npm install
 npm install crypto-js
 
 
+---
 
+## 🚀 Getting Started
+
+### 1. Create the React App
+
+```bash
 
