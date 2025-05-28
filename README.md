@@ -178,8 +178,6 @@ const PORT = 3001;
 // PayHere Merchant Secret
 const MERCHANT_SECRET = 'MjM5MzQ1MDgyNDQwNTM3NDUwMjUzNTI5NDI4ODczNDkxNzI3ODcw';
 
-
-
 // Middleware
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -190,7 +188,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'xyz', // ✅ Use your database name
+    database: 'payhere', // ✅ Use your database name
 });
 
 db.connect((err) => {
@@ -213,9 +211,7 @@ app.post('/payhere-notify', (req, res) => {
         status_code,
         md5sig,
         method,
-        customer_name,
-        customer_email,
-        custom_1
+        status_message,
     } = data;
 
     // Step 1: Generate hash
@@ -233,17 +229,16 @@ app.post('/payhere-notify', (req, res) => {
 
     // Step 2: Compare Signature
     if (md5sig !== localSig) {
-        console.error('❌ Invalid signature!');
+        console.error('Invalid signature!');
         return res.status(400).send('Invalid signature');
     }
 
     // Step 3: Store Payment in DB
     const sql = `
     INSERT INTO payments (
-      order_id, amount, currency, status_code,
-      method, customer_name, customer_email, created_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
-  `;
+      order_id, payhere_amount, payhere_currency, status_code,
+      method, status_message, created_at
+    ) VALUES (?, ?, ?, ?, ?, ?, NOW())`;
 
     const values = [
         order_id,
@@ -251,8 +246,7 @@ app.post('/payhere-notify', (req, res) => {
         payhere_currency,
         status_code,
         method,
-        customer_name,
-        customer_email
+        status_message,
     ];
 
     db.query(sql, values, (err, result) => {
@@ -265,6 +259,7 @@ app.post('/payhere-notify', (req, res) => {
 
     res.send('OK');
 });
+
 
 // Start Server
 app.listen(PORT, () => {
