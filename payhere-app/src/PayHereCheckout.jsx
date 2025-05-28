@@ -50,7 +50,7 @@ const PayHereCheckout = () => {
             merchant_id: merchantId,
             return_url: undefined, // optional
             cancel_url: undefined, // optional
-            notify_url: 'http://localhost:3001/payhere-notify', // Optional (for backend confirmation)
+            notify_url: 'https://d803-123-231-127-39.ngrok-free.app/payhere-notify', // Optional (for backend confirmation)
 
             order_id: orderId,
             items: 'Demo Product',
