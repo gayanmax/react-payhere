@@ -162,6 +162,8 @@ npm init -y
 ## Install Dependencies
 ```bash
 npm install express body-parser mysql cors
+npm install -g ngrok
+
 ```
 
 # modify the server.js file 
